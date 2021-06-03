@@ -1,8 +1,13 @@
-
+# travel-blog-v2
 
 Clone This Project (Make Sure You Have Git Installed)
 ```
-https://github.com/mustafamuratcoskun/DjangoBlogApp.git
+https://github.com/raushanrk5/travel-blog-v2.git
+```
+Create a virual envronment and activate it using
+```
+virtualenv env
+source env/bin/activate
 ```
 Install Dependencies 
 
@@ -21,6 +26,3 @@ python manage.py createsuperuser
 ```
 
 After all these steps , you can start testing and developing this project. 
-
-#### That's it! Happy Coding!
-# travel-blog-v2

@@ -1,0 +1,55 @@
+{% extends "layout.html"%}
+
+{% block body%}
+    <section class="m-5">
+        <div class="row">
+            <div class="col col-md-6 col-sm-12">
+               <h3> Control Panel </h3>
+            </div>
+            <div class="col col-md-6 float-right text-right">
+                <p>Welcome, <small> {{request.user.username|capfirst}} </small>
+            </div>
+
+        </p>
+        </div>
+        <hr>
+        <a class = "btn btn-info" href = "{% url 'post:addarticle' %}"> Add Article </a>
+        <hr>
+        {% if articles%}
+        <div class="table-responsive">
+            <table class = "table table-danger table-hover">
+                <thead>
+                  <tr>
+                    <th scope = "col"> id </th>
+                    <th scope = "col"> Title </th>
+                    <th scope = "col"> Author </th>
+                    <th scope = "col"> Date </th>
+                    <th scope = "col"> Update </th>
+                    <th scope = "col"> Delete </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for article in articles%}
+                  <tr>
+                    <th scope = "row"> {{article.id}} </th>
+                    <td> <a href="{% url 'post:detail' article.slug %}"> {{article.title}} </a> </td>
+                    <td> {{article.author.username}} </td>
+                    <td> {{article.created_date}} </td>
+                    <td> <a href="{% url 'post:update' article.slug %}" class = "btn btn-info"> Update </a> </td>
+                    <td> <a href="{% url 'post:delete' article.slug %}" class = "btn btn-danger"> Delete </a> </td>
+                  </tr>
+                  {% endfor%}
+
+                </tbody>
+              </table>
+        </div>
+        {% else%}
+
+        <div class = "alert alert-danger">
+            You do not have an article yet ...
+
+        </div>
+        {% endif%}
+
+    </section>
+{% endblock body%}

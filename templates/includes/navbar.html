@@ -1,0 +1,39 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-info px-4 row">
+        <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-md-8 float-left" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'post:articles'  %}">Home</a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link" href="{% url 'about'  %}">About Us</a>
+            </li>
+            <li class="nav-item text-center">
+              <a class="nav-link" href="{% url 'post:gallery'  %}">Gallery</a>
+            </li>
+            {% for category in categories %}
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'post:articles' category.category_slug %}">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+
+            <li class="nav-item text-center">
+              <a class="nav-link" href="{% url 'post:contact'  %}">Contact</a>
+            </li>
+
+          </ul>
+		</div>
+
+          <div class="navbar-form col-md-4 col-sm-12 float-center">
+            <form class="form-inline float-center text-center">
+              {% csrf_token %}
+                <input class="form-control w-75 ml-3 mr-2" type="text" placeholder="Search here..." required="yes" name="keyword" maxlength="64">
+                <button class="btn btn1 my-2" type="submit" name="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+
+</nav>
+
+

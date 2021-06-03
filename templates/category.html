@@ -1,0 +1,8 @@
+<ul class="list-group single ml-2 mt-4">
+	{% for category in categories %}
+		<li class="list-group-item d-flex justify-content-between align-items-center bg-info mb-2">
+			{{ category.name }}
+			<span class="badge badge-success badge-pill">{{ category.posts.count }}</span>
+		</li>
+	{% endfor %}
+</ul>

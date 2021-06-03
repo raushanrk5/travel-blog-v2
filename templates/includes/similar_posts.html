@@ -1,0 +1,23 @@
+                    <div class="popular-post pt-0">
+                        <h1>Similar Posts</h1>
+                        {% for post in similar_posts %}
+                        <div class="post-content" data-aos="flip-up" data-aos-delay="600">
+                            <div class="post-image mb-2">
+                                <div>
+                                    <img src="{{post.article_image.url}}" class="img" alt="blog1">
+                                </div>
+                                <div class="post-info flex-row">
+                                    <span><i class="fa fa-calendar text-gray"></i>&nbsp;&nbsp;{{ post.created_date.date}}</span>
+                                    <span class="text-gray">{% if post.comments.all %}
+                                        {{ post.comments.all.count }} Comment{{ post.comments.all.count|pluralize }}
+                                        {% else  %}
+                                        0 Comment
+                                        {% endif %}</span>
+                                </div>
+                            </div>
+                            <div class="post-title">
+                                <a style="font-size:22px" class="text-primary text-bold" href="{% url 'post:detail' post.slug %}">{{ post.title |truncatewords:7}}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>

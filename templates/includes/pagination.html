@@ -1,0 +1,22 @@
+{% load blog_tags %}
+<div class="pagination">
+ <span class="step-links">
+ {% if page.has_previous %}
+ <a href="?page={{ page.previous_page_number }}"><i class="fa fa-chevron-left"></i></a>
+ {% else %}
+     <i class="fa fa-chevron-left mr-3"></i>
+ {% endif %}
+ <span class="current">
+     {% with nums=page.paginator.num_pages %}
+         {% for i in nums|times %}
+            <a href="?page={{ forloop.counter }}" class="pages">{{ forloop.counter }}</a>
+         {% endfor %}
+     {% endwith %}
+ </span>
+ {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}"><i class="fa fa-chevron-right"></i></a>
+     {% else %}
+     <i class="fa fa-chevron-right ml-3"></i>
+ {% endif %}
+ </span>
+</div>

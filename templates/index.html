@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class = "jumbotron text-center">
+        <h3> Hey! welcome to the Travel blog </h3>
+        <p> If u are a registered user then do Sign In! </p>
+        <p>Otherwise, go to articles section!!</p>
+</div>
+
+
+<p class="text-center">
+        {% if request.user.is_authenticated %}
+                Logged In, {{request.user.username}}
+        {% else %}
+                Log in
+        {% endif %}
+
+</p>
+{% endblock body %}
+

@@ -1,0 +1,41 @@
+<div class="top-bar_sub_w3layouts container-fluid">
+			<div class="row">
+				<div class="col-md-4 logo text-left my-1">
+					<a class="navbar-brand" href="{% url 'post:articles'  %}">
+						<img style="width:210px;height:50px;" src="/static/img/color_logo_with_background (3).png"" alt=""></a>
+				</div>
+				<div class="col-md-4 top-forms text-center mt-2">
+					{% if request.user.is_authenticated %}
+					<span class="mr-2">
+						<a href="{% url 'post:dashboard'  %}">
+							<i class="fa fa-user"></i> <strong>Control Panel</strong></a>
+					</span>
+					<span class="mr-2">
+						<a href="{% url 'user:register'  %}">
+							<i class="fa fa-user"></i> <strong>Register</strong></a>
+					</span>
+					<span>
+						<a href="{% url 'user:logout'  %}">
+							<i class="fa fa-unlock"></i> <strong>Logout</strong></a>
+					</span>
+
+					{% else %}
+
+					<span class="mx-lg-4 mx-md-2 mx-1 d-none">
+						<a href="{% url 'user:login'  %}">
+							<i class="fa fa-lock"></i> <strong>Sign In</strong></a>
+					</span>
+					{% endif %}
+				</div>
+				<div class="col-md-4 log-icons mt-1">
+
+					<ul class="social-icons d-flex  justify-content-center">
+                        <li><a class="facebook" href="https://www.facebook.com/profile.php?id=100015237614107"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="instagram" href="https://www.instagram.com/raushan_rk5/"><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/raushan-kumar-116b48195/"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+				</div>
+			</div>
+		</div>
+

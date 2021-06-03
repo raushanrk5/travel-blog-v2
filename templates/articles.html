@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+{% load blog_tags %}
+<!--<img class="mx-0 w-100" src="{% static 'img/main.jpg' %}" alt="">-->
+<section class="site-title text-light" style="background-image=url({% static 'img/front_pic2.jpg' %})">
+    <div class="site-background aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        <h1 class="text-white">Welcome to the TravellerNook</h1>
+        <h4 class="text-white">Travel Food Lifestyle Culture</h4>
+    </div>
+</section>
+
+<section class="section mt-5 mb-4 bg-light">
+      <div class="container p-3" style="background:white;">
+        <div class="row">
+            <div class="col-md-4 offset-md-1 col-xs-6 px-3">
+                <img class="w-100 rounded" src="https://pbs.twimg.com/profile_images/470128621558853632/63jnrPIX.jpeg" />
+            </div>
+            <div class="col-md-5 offset-md-1 col-xs-6 align-middle py-5">
+                <h2>Welcome to Travel-blog</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. </p>
+            </div>
+        </div>
+      </div>
+</section>
+
+{% include 'blog_carousel.html' %}
+
+<section class="section mt-5 bg-light rounded">
+      <div class="container p-3" style="background:white;">
+        <div class="text-center">
+            <h1>Features and Collaborations</h1>
+			<mg style="width:125px;height:125px;" class="mb-5" src="/static/img/correct2.jpg"" alt="">
+            <a href="https://rakeshkumar.contently.com/" class="btn btn-info btn-lg mt-5 rounded">Goto my Portfolio</a>
+        </div>
+      </div>
+</section>
+
+<main class="mt-5 pt-0">
+    <section class="container-fluid">
+            <div class="site-content">
+                <div class="posts">
+                    {% for post in articles %}
+                    <div class="post-content mb-5" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="post-image">
+                            <div>
+                                <img src="{{post.article_image.url}}" class="img" alt="blog1">
+                            </div>
+                            <div class="post-info flex-row">
+                                <span><i class="fa fa-user text-gray"></i>&nbsp;&nbsp;{{ post.author.username }}</span>
+                                <span><i class="fa fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{ post.created_date }}</span>
+                                <span>{% if post.comments.all %}
+                                        {{ post.comments.all.count }} Comment{{ post.comments.all.count|pluralize }}
+                                        {% else  %}
+                                        0 Comment
+                                        {% endif %}</span>
+                            </div>
+                        </div>
+                        <div class="post-title">
+                            <div class="post-title">
+                                <p class="title"><u>{{ post.title|truncatewords:8 }}</u></p>
+                            </div>
+                            {{post.content|safe|truncatewords:30}}<br>
+                            <a class="btn post-btn rounded mt-3" href="{% url 'post:detail' post.slug %}">Read More &nbsp;<i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% include 'includes/pagination.html' with page=articles %}
+                </div>
+                <aside class="sidebar">
+                    <div class="category">
+                        <h2>Category</h2>
+                        {% include "category.html" %}
+                    </div>
+
+                    {% show_latest_posts 3 %}
+
+
+
+                    {% include 'includes/editors_choice.html' %}
+
+                    <div class="popular-tags">
+                        <h2>Popular Tags</h2>
+                        <div class="tags flex-row" style="display:flex; flex-direction:row; flex-wrap:wrap;">
+                            {% for tag in tags %}
+                            <span class="tag aos-init aos-animate" data-aos="flip-up" data-aos-delay="100">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+</main>
+{% include "includes/index_gallery.html" %}
+{% endblock body %}

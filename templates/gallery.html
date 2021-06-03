@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+    <div class="js-animsition animsition" id="site-wrap" data-animsition-in-class="fade-in" data-animsition-out-class="fade-out">
+    <section class="site-hero overlay page-inside w-100 site-title mb-5">
+      <div class="container site-background">
+        <div class="row site-hero-inner justify-content-center align-items-center">
+          <div class="col-md-10 text-center">
+            <h1 class="heading" data-aos="fade-up">Gallery</h1>
+          </div>
+        </div>
+        <!-- <a href="#" class="scroll-down">Scroll Down</a> -->
+      </div>
+    </section>
+    <!-- END section -->
+
+
+    <section class="section">
+      <div class="container col-md-10">
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-md-6 col-lg-3 mb-4">
+            <a href="{{ post.article_image.url }}" data-fancybox="gallery"><img src="{{ post.article_image.url }}" alt="Free Template by Free-Template.co" class="img-fluid"></a>
+          </div>
+          {% endfor %}
+
+          {% for post in posts %}
+          <div class="col-md-6 col-lg-6 mb-4">
+            <a href="{{ post.article_image.url }}" data-fancybox="gallery"><img src="{{ post.article_image.url }}" alt="Free Template by Free-Template.co" class="img-fluid"></a>
+          </div>
+          {% endfor %}
+
+          {% for post in posts %}
+          <div class="col-md-6 col-lg-3 mb-4">
+            <a href="{{ post.article_image.url }}" data-fancybox="gallery"><img src="{{ post.article_image.url }}" alt="Free Template by Free-Template.co" class="img-fluid"></a>
+          </div>
+          {% endfor %}
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+    </div> <!-- .animsition -->
+
+{% endblock body %}

@@ -1,0 +1,14 @@
+{% extends "layout.html"%}
+{% block body%}
+<section class="section mt-5 bg-light rounded">
+      <div class="container p-3" style="background:white;">
+        <div class="text-center">
+			<img style="width:125px;height:125px;" class="mb-5" src="/static/img/correct2.jpg"" alt="">
+            <h1>Thank you!!</h1>
+            <p>Your contact information and message are successfully recieved and we will contact you soon.</p>
+            <a href="{% url 'post:articles'  %}" class="btn btn-success btn-lg mt-5">Back to Home</a>
+        </div>
+      </div>
+</section>
+{% endblock body%}
+

@@ -1,0 +1,50 @@
+
+<section class="blog mt-5 mb-4" >
+    <div class="container-fluid">
+		<div id="owl-demo-2" class="owl-carousel owl-theme owl-loaded owl-drag mx-0 rounded">
+		    <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(0px, 0px); transition: all 0s ease 0s; width: 4700px;">
+                    {% for article in latest_posts %}
+                    <div class="owl-item active" style="width:434.17px; height:400px;background-color:#cbfff5!important;">
+                        <div class="thumbnail item pb-1">
+                            <a class="blog-thumb-img" href="{% url 'post:detail' article.slug %}" title="">
+                                <img src="{{article.article_image.url}}" class="img-responsive rounded p-0" style="height:200px;">
+                            </a>
+                            <div class="caption px-3">
+                                <h4 itemprop="headline" class="py-2 text-center">
+                                    <a href="{% url 'post:detail' article.slug %}" rel="bookmark">{{ article.title | truncatewords:6}}</a>
+                                </h4>
+                                <p class="category text-center">
+                                    {% for c in article.categories.all %}<span class="text-center">{{ c }}</span>{% endfor %}</p>
+                                  <!-- Author -->
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <p class="lead font-weight-bold font-italic d-block">
+                                            {{article.author.username|capfirst}}
+                                          </p>
+                                      </div>
+                                      <div class="col-md-6">
+
+                                          <!-- Date/Time -->
+                                          <p class="text-right d-block">{{article.created_date.date}}</p>
+                                      </div>
+                                  </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+<!--            <div class="owl-nav">-->
+<!--                <div class="owl-prev">prev</div>-->
+<!--                <div class="owl-next">next</div>-->
+<!--            </div>-->
+<!--            <div class="owl-dots">-->
+<!--                <div class="owl-dot active"><span></span></div>-->
+<!--                <div class="owl-dot"><span></span></div>-->
+<!--            </div>-->
+        </div>
+		<!-- #owl-demo-2 -->
+	</div>
+</section>

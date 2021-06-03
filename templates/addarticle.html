@@ -1,0 +1,21 @@
+{% extends "layout.html"%}
+
+{% block body%}
+{% load crispy_forms_tags%}
+
+<div class = "row my-5">
+    <div class = "col-md-8 col-sm-10 offset-sm-1 offset-md-2">
+        <h2 class="text-success"> Create Article </h2>
+        <hr>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token%}
+            {{form.media}}
+            {{form | crispy}}
+            <br>
+            <button type = "submit" class = "btn btn-success btn-block"> Add Article </button>
+        </form>
+    </div>
+  </div>
+
+
+{% endblock body%}

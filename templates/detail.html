@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% load blog_tags %}
+{% block body %}
+<main class="mt-5 pt-0">
+    <section class="container-fluid">
+            <div class="site-content">
+                <div class="posts">
+                    <div class="post-content mb-5" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="post-image">
+                            <div>
+                                <img src="{{post.article_image.url}}" class="img" alt="blog1">
+                            </div>
+                            <div class="post-info flex-row">
+                                <span><i class="fa fa-user text-gray"></i>&nbsp;&nbsp;{{ post.author.username }}</span>
+                                <span><i class="fa fa-calendar-alt text-gray"></i>&nbsp;&nbsp;{{ post.created_date }}</span>
+                            </div>
+                        </div>
+                        <div class="sharethis-inline-share-buttons mt-3"></div>
+                        <div class="post-title">
+                            <div class="post-title">
+                                <p class="title"><u><b>{{ post.title }}</b></u></p>
+                            </div>
+                            {{post.content|safe}}
+                        </div>
+                    </div>
+                    <div class="sharethis-inline-share-buttons"></div>
+
+                    <hr>
+                    <div>
+                         <h4>{% if comments %}({{comments.count }}){% endif %} Comments</h4>
+                      <hr>
+                      {% if comments %}
+                      {% for comment in comments  %}
+                        <div class="media mb-4">
+                          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                          <div class="media-body">
+                            <h4 class="mt-0">{{ comment.comment_author}}</h4>
+                              <h6 class="text-primary">{{ comment.email }}  <span class="text-danger pl-5">{{comment.comment_date}}</span></h6>
+                            <p class="pt-2">{{comment.comment_content}}</p>
+                          </div>
+                        </div>
+                      {% endfor %}
+
+
+                      {% else %}
+                      <div class ="alert alert-danger">
+                        This article has no comments, be the first to comment!
+                      </div>
+                      {% endif %}
+
+                      <div class="card my-5 pt-3 container w-100 float-center">
+                          <h5 class="card-header mb-4">Add Comment:</h5>
+                          <div class="card-body">
+                            <form method = "post" action = "{% url 'post:comment' post.slug %}">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput">Name</label>
+                                  <input name = "comment_author" type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter your name">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput">Email</label>
+                                  <input name = "email" type="email" class="form-control" id="formGroupExampleInput" placeholder="Enter your email">
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="formGroupExampleInput">Comment</label>
+                                <textarea name = "comment_content" class="form-control" rows="3"></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-info btn-block my-3">Add</button>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="sidebar">
+                    {% include "includes/similar_posts.html" %}
+                    <div class="category">
+                        <h2>Category</h2>
+                        {% include "category.html" %}
+                    </div>
+
+
+                    {% include 'includes/editors_choice.html' %}
+                </aside>
+            </div>
+    </section>
+</main>
+{% endblock body %}
+
+

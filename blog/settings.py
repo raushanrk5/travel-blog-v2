@@ -25,7 +25,7 @@ SECRET_KEY = '&49ga4rqxrp)^w=%ed&s4qf0*)1yvl!$6j=e@b^^e=i-s3g+@+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['raushanrk.pythonanywhere.com']
+ALLOWED_HOSTS = ['raushanrk.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/raushanrk/Blogging_website/templates'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
